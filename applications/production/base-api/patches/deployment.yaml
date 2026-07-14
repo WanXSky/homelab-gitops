@@ -16,3 +16,8 @@ spec:
                 secretKeyRef:
                   name: base-api-secret 
                   key: DATABASE_URL
+            - name: JWT_SECRETKEY
+              valueFrom:
+                secretKeyRef:
+                  name: base-api-secret
+                  key: JWT_SECRETKEY
