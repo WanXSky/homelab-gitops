@@ -1,0 +1,20 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: base-api
+  namespace: argocd
+spec:
+  project: production
+  source:
+    repoURL: https://github.com/WanXSky/homelab-gitops.git 
+    targetRevision: main
+    path: applications/production/base-api 
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: production 
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true
