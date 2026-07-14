@@ -3,7 +3,7 @@ kind: Kustomization
 resources:
   - ../../../templates/node-api/base/ 
 namespace: production
-namePrefix: base-api 
+namePrefix: base-api- 
 images:
   - name: nginx
     newName: ghcr.io/wanxsky/base-api
