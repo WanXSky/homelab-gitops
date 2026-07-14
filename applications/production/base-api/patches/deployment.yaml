@@ -8,3 +8,11 @@ spec:
     spec:
       imagePullSecrets:
         - name: ghcr-secret 
+      containers:
+        - name: app 
+          env:
+            - name: DATABASE_URL
+              valueFrom:
+                secretKeyRef:
+                  name: base-api-secret 
+                  key: DATABASE_URL
