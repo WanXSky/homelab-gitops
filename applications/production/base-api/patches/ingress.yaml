@@ -1,8 +1,15 @@
 apiVersion: networking.k8s.io/v1
-kind: Ingress 
+kind: Ingress
+
 metadata:
-  name: app 
+  name: app
+
 spec:
+  tls:
+    - hosts:
+        - api.kzt.biz.id
+      secretName: base-api-tls
+
   rules:
     - host: api.kzt.biz.id
       http:
