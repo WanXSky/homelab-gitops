@@ -1,0 +1,14 @@
+architecture: standalone
+auth:
+  existingSecret: postgres-superuser-secret
+  secretKeys:
+    adminPasswordKey: postgres-password
+primary:
+  persistance:
+    size: 5Gi
+  resources:
+    cpu: 50m
+    memory: 128Mi
+  limits:
+    cpu: 250m
+    memory: 256Mi
