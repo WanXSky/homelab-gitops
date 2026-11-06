@@ -32,9 +32,14 @@ spec:
           command: ["sh", "/scripts/bootstrap.sh"]
           env:
             - name: POSTGRES_HOST
-              value: postgresql-postgresql.database.svc.cluster.local
+              value: postgresql.database.svc.cluster.local
             - name: POSTGRES_USER
               value: postgres
+            - name: POSTGRES_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  key: postgres-password
+                  name: postgres-superuser-secret
             - name: APP_DB_USER
               value: baseapi
             - name: APP_DB_NAME
