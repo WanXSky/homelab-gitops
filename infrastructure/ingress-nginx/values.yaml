@@ -1,0 +1,7 @@
+# ingress-nginx controller values.
+# Chart defaults are fine on K3s (Service type LoadBalancer gets an IP
+# from K3s's built-in klipper LB). Only pinning replica count here.
+controller:
+  replicaCount: 1
+  service:
+    type: LoadBalancer

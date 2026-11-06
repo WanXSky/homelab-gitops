@@ -1,7 +1,7 @@
-apiVersion: argorpoj.io/v1alpha1
+apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: cert-manager 
+  name: cert-manager
   namespace: argocd
   annotations:
     argocd.argoproj.io/sync-wave: "-1"
@@ -16,13 +16,13 @@ spec:
         valueFiles:
           - $values/infrastructure/cert-manager/values.yaml
 
-    - repoURL: https://github.com/WanXSky/homelab-gitops.git 
-      targetRevision: main 
-      ref: values 
-  
+    - repoURL: https://github.com/WanXSky/homelab-gitops.git
+      targetRevision: main
+      ref: values
+
   destination:
-    - server: https://kubernetes.default.svc
-      namespace: cert-manager
+    server: https://kubernetes.default.svc
+    namespace: cert-manager
 
   syncPolicy:
     automated:

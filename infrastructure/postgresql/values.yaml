@@ -4,7 +4,7 @@ auth:
   secretKeys:
     adminPasswordKey: postgres-password
 primary:
-  persistance:
+  persistence:
     size: 5Gi
   resources:
     cpu: 50m

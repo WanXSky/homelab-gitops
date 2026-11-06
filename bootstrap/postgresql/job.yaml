@@ -1,0 +1,54 @@
+# Runs bootstrap/postgresql/bootstrap.sh once against the Bitnami
+# PostgreSQL primary, creating the app role + database if missing.
+# Referenced by bootstrap/postgresql/kustomization.yaml (ConfigMap
+# postgres-bootstrap-script is generated there from bootstrap.sh).
+#
+# Before applying: make sure these match your setup
+# - POSTGRES_HOST: service name of the Bitnami primary in namespace
+#   database (verify with: kubectl get svc -n database).
+#   Release name is the ArgoCD app name ("postgresql"), so the
+#   primary service is usually postgresql-postgresql.
+# - APP_DB_USER / APP_DB_NAME: must match DATABASE_URL in the
+#   base-api-secret (namespace production).
+# - APP_DB_PASSWORD: create secret "base-api-db" (namespace database)
+#   with key "password" first, e.g.:
+#     kubectl create secret generic base-api-db -n database \
+#       --from-literal=password='...'
+# - The superuser password is hardcoded inside bootstrap.sh itself;
+#   it must equal the postgres-password in postgres-superuser-secret.
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: postgres-bootstrap
+  namespace: database
+spec:
+  backoffLimit: 3
+  template:
+    spec:
+      restartPolicy: OnFailure
+      containers:
+        - name: bootstrap
+          image: postgres:18
+          command: ["sh", "/scripts/bootstrap.sh"]
+          env:
+            - name: POSTGRES_HOST
+              value: postgresql-postgresql.database.svc.cluster.local
+            - name: POSTGRES_USER
+              value: postgres
+            - name: APP_DB_USER
+              value: baseapi
+            - name: APP_DB_NAME
+              value: baseapi
+            - name: APP_DB_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: base-api-db
+                  key: password
+          volumeMounts:
+            - name: script
+              mountPath: /scripts
+      volumes:
+        - name: script
+          configMap:
+            name: postgres-bootstrap-script
+            defaultMode: 0755
