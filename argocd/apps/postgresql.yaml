@@ -33,6 +33,7 @@ spec:
         - /spec/template/spec/hostNetwork
         - /spec/template/spec/securityContext/supplementalGroups
         - /spec/template/spec/securityContext/sysctls
+        - /spec/template/spec/containers/0/resources
 
   syncPolicy:
     automated:
