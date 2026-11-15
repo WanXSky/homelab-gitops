@@ -7,7 +7,7 @@ namePrefix: base-api-
 images:
   - name: nginx
     newName: ghcr.io/wanxsky/base-api
-    newTag: ec1d70d
+    newTag: latest
 patches:
   - path: patches/deployment.yaml
   - path: patches/ingress.yaml 
