@@ -8,6 +8,8 @@ metadata:
     argocd-image-updater.argoproj.io/base-api.update-strategy: newest-build 
     argocd-image-updater.argoproj.io/write-back-method: git
     argocd-image-updater.argoproj.io/base-api.pull-secret: pullsecret:argocd/argocd-image-updater-registry-creds
+    argocd-image-updater.argoproj.io/base-api.ignore-tags: latest
+
 
 spec:
   project: production
