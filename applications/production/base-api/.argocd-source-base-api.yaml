@@ -1,0 +1,3 @@
+kustomize:
+  images:
+  - ghcr.io/wanxsky/base-api:a9814b6
