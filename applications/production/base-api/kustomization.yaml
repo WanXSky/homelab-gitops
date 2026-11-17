@@ -7,7 +7,7 @@ namespace: production
 namePrefix: base-api-
 images:
   - name: ghcr.io/wanxsky/base-api
-    newTag: dd705f3
+    newTag: 7e5a52e
 patches:
   - path: patches/deployment.yaml
   - path: patches/ingress.yaml
