@@ -6,8 +6,7 @@ resources:
 namespace: production
 namePrefix: base-api-
 images:
-  - name: nginx
-    newName: ghcr.io/wanxsky/base-api
+  - name: ghcr.io/wanxsky/base-api
     newTag: latest
   - name: ghcr.io/wanxsky/base-api
     newTag: a9814b6
