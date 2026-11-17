@@ -1,14 +1,16 @@
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 resources:
-  - ../../../templates/node-api/base/ 
+  - ../../../templates/node-api/base/
   - ./image-updater.yaml
 namespace: production
-namePrefix: base-api- 
+namePrefix: base-api-
 images:
   - name: nginx
     newName: ghcr.io/wanxsky/base-api
     newTag: latest
+  - name: ghcr.io/wanxsky/base-api
+    newTag: a9814b6
 patches:
   - path: patches/deployment.yaml
-  - path: patches/ingress.yaml 
+  - path: patches/ingress.yaml
