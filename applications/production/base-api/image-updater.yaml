@@ -4,7 +4,7 @@ metadata:
   name: image-updater
   namespace: argocd 
 spec:
-  applicationsRefs:
+  applicationRefs:
     - namePattern: "base-api"
       useAnnotations: true 
   writeBackConfig:
