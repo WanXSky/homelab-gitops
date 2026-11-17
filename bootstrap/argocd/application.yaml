@@ -6,7 +6,9 @@ metadata:
   annotations:
     argocd-image-updater.argoproj.io/image-list: base-api=ghcr.io/wanxsky/base-api 
     argocd-image-updater.argoproj.io/base-api.update-strategy: newest-build 
-    argocd-image-updater.argoproj.io/write-back-method: git 
+    argocd-image-updater.argoproj.io/write-back-method: git
+    argocd-image-updater.argoproj.io/base-api.pull-secret: pullsecret:argocd/argocd-image-updater-registry-creds
+
 spec:
   project: production
   source:
