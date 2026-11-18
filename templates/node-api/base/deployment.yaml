@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
         - name: app
-          image: ghcr.io/wanxsky/base-api:latest
+          image: ghcr.io/wanxsky/base-api:7e5a52e
           imagePullPolicy: Always
           ports:
             - containerPort: 3000
